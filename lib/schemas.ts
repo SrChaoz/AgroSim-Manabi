@@ -7,6 +7,12 @@ export const agroPlanSchema = z.object({
   ods_impactados: z.tuple([z.literal("ODS 2"), z.literal("ODS 12"), z.literal("ODS 15")]), advertencia_legal: z.string()
 });
 export type AgroPlanOutput = z.infer<typeof agroPlanSchema>;
+export const cropValidationSchema = z.object({ isCrop: z.boolean(), normalizedCrop: z.string(), reason: z.string() });
+export const cropValidationJsonSchema = { name: "crop_validation", strict: true, schema: { type: "object", additionalProperties: false, properties: { isCrop: { type: "boolean" }, normalizedCrop: { type: "string" }, reason: { type: "string" } }, required: ["isCrop", "normalizedCrop", "reason"] } } as const;
+export const evidenceDiagnosisSchema = z.object({ cultivo_detectado: z.string(), problema_principal: z.string(), severidad: z.enum(["Baja", "Media", "Alta"]), resumen_analisis: z.string(), hallazgos_visuales: z.array(z.string()).max(3), acciones_inmediatas: z.array(z.string()).max(3), advertencia_legal: z.string() });
+export const evidenceDiagnosisJsonSchema = { name: "evidence_diagnosis", strict: true, schema: { type: "object", additionalProperties: false, properties: { cultivo_detectado: { type: "string" }, problema_principal: { type: "string" }, severidad: { type: "string", enum: ["Baja", "Media", "Alta"] }, resumen_analisis: { type: "string" }, hallazgos_visuales: { type: "array", items: { type: "string" }, maxItems: 3 }, acciones_inmediatas: { type: "array", items: { type: "string" }, maxItems: 3 }, advertencia_legal: { type: "string" } }, required: ["cultivo_detectado", "problema_principal", "severidad", "resumen_analisis", "hallazgos_visuales", "acciones_inmediatas", "advertencia_legal"] } } as const;
+export const diagnosisChatSchema = z.object({ reply: z.string(), warning: z.string() });
+export const diagnosisChatJsonSchema = { name: "diagnosis_chat", strict: true, schema: { type: "object", additionalProperties: false, properties: { reply: { type: "string" }, warning: { type: "string" } }, required: ["reply", "warning"] } } as const;
 export const agroPlanJsonSchema = {
   name: "agro_plan_manabi", strict: true,
   schema: { type: "object", additionalProperties: false, properties: {
