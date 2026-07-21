@@ -5,7 +5,8 @@ export interface SuggestedZone { nombre_zona: string; area_proporcional_ha: numb
 export interface SimulationInput { crop: string; soilType: string; irrigationChange: number; rainfallScenario: string; parcel: Parcel | null }
 export interface CropValidation { isCrop: boolean; normalizedCrop: string; reason: string }
 export interface EvidenceDiagnosis { cultivo_detectado: string; problema_principal: string; severidad: Severity; resumen_analisis: string; hallazgos_visuales: string[]; acciones_inmediatas: string[]; advertencia_legal: string }
-export interface DiagnosisChatMessage { role: "user" | "assistant"; content: string }
+export interface DiagnosisChatMessage { role: "user" | "assistant"; content: string; imageUrl?: string }
+export interface DiagnosisRecord { id: string; createdAt: string; diagnosis: EvidenceDiagnosis; note: string; imageUrl?: string; messages: DiagnosisChatMessage[] }
 export interface AgroPlan {
   diagnostico_inicial: { cultivo_detectado: string; problema_principal: string; severidad: Severity; resumen_analisis: string };
   simulacion_impacto: { descripcion_escenario: string; impacto_rendimiento_proyectado: string; justificacion_trazable: string };
