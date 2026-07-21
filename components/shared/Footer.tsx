@@ -1,0 +1,1 @@
+export function Footer() { return <footer className="border-t border-earth-100 px-4 py-7 text-center text-xs text-slate-500">AgroSim Manabí ofrece apoyo a la decisión. Todo diagnóstico y recomendación requiere validación de un técnico agrónomo en campo.</footer>; }
